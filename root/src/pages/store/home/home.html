@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Food Store</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Food Store</h1>
+        <nav>
+            <a href="/src/pages/store/home/home.html">Inicio</a> |
+            <a href="#">Mis Pedidos</a> |
+            <a href="/src/pages/store/cart/cart.html" id="abrir-carrito">Carrito</a> |
+            <a href="/src/pages/admin/index.html">Panel Admin</a> |
+            <a href="#" id="logout-btn">Cerrar Sesión</a>
+            <span id="contador-carrito">🛒 (0)</span>
+        </nav>
+    </header>
+
+    <main>
+        <aside>
+            <h2>Categorías</h2>
+            <ul id="lista-categorias"></ul>
+        </aside>
+
+        <div style="flex: 1;">
+            <section>
+                <h2>Bienvenido a Food Store</h2>
+                <p>Tu tienda de comida rápida favorita.</p>
+
+                <form>
+                    <input id="buscador" type="search" placeholder="Buscar productos...">
+                    <button type="submit">Buscar</button>
+                </form>
+            </section>
+
+            <section>
+                <h2>Productos Destacados</h2>
+                <div id="contenedor-productos"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Food Store. Todos los derechos reservados.</p>
+        <p>Contacto: foodstore@email.com</p>
+    </footer>
+
+    <!-- Ya no renderizamos el modal del carrito acá, ahora es una página separada -->
+
+    <script type="module" src="./home.ts"></script>
+
+</body>
+
+</html>
