@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Productos - Food Store Admin</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/src/pages/admin/admin.css">
+</head>
+<body class="admin-layout">
+
+    <aside class="admin-sidebar">
+        <div class="admin-sidebar-header">
+            <h2>Administración</h2>
+            <p>Panel de control</p>
+        </div>
+        <nav class="admin-sidebar-nav">
+            <a href="/src/pages/admin/adminHome/index.html" class="admin-nav-item">📊 Dashboard</a>
+            <a href="/src/pages/admin/categories/index.html" class="admin-nav-item">📁 Categorías</a>
+            <a href="/src/pages/admin/products/index.html" class="admin-nav-item active">🍔 Productos</a>
+            <a href="/src/pages/admin/orders/index.html" class="admin-nav-item">📦 Pedidos</a>
+            <div style="height: 1px; background-color: var(--color-borde); margin: 15px 20px;"></div>
+            <a href="/src/pages/store/home/home.html" class="admin-nav-item">🏪 Ver Tienda</a>
+        </nav>
+    </aside>
+
+    <div class="admin-content">
+        <header class="admin-topbar">
+            <a href="#" class="admin-topbar-logo">🍕 Food Store</a>
+            <div class="admin-topbar-links">
+                <a href="/src/pages/store/home/home.html">Tienda</a>
+                <a href="/src/pages/admin/adminHome/index.html">Panel Admin</a>
+                <span style="color: var(--color-borde);">|</span>
+                <span id="admin-name">Admin Sistema</span>
+                <button id="logout-btn" class="btn-cerrar-sesion">Cerrar Sesión</button>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <div class="admin-header-actions">
+                <h1 style="color: #343a40;">Gestión de Productos</h1>
+                <button class="btn-primary" id="btn-add-product">+ Nuevo Producto</button>
+            </div>
+
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Categoría</th>
+                            <th>Stock</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Product Form Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-product-modal">&times;</span>
+            <h2 id="modal-title">Producto</h2>
+            <form id="product-form" style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px;">
+                <input type="hidden" id="product-id">
+                
+                <div style="display: flex; gap: 15px;">
+                    <div style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
+                        <label for="product-name">Nombre</label>
+                        <input type="text" id="product-name" required style="padding: 10px; border-radius: 5px; border: 1px solid var(--color-borde);">
+                    </div>
+                    <div style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
+                        <label for="product-price">Precio ($)</label>
+                        <input type="number" id="product-price" required min="0" step="0.01" style="padding: 10px; border-radius: 5px; border: 1px solid var(--color-borde);">
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <label for="product-desc">Descripción</label>
+                    <textarea id="product-desc" rows="2" style="padding: 10px; border-radius: 5px; border: 1px solid var(--color-borde);"></textarea>
+                </div>
+
+                <div style="display: flex; gap: 15px;">
+                    <div style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
+                        <label for="product-category">Categoría</label>
+                        <select id="product-category" required style="padding: 10px; border-radius: 5px; border: 1px solid var(--color-borde);">
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+                    <div style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
+                        <label for="product-stock">Stock</label>
+                        <input type="number" id="product-stock" required min="0" style="padding: 10px; border-radius: 5px; border: 1px solid var(--color-borde);">
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <label for="product-image">URL de Imagen</label>
+                    <input type="text" id="product-image" required style="padding: 10px; border-radius: 5px; border: 1px solid var(--color-borde);">
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="product-available" checked>
+                    <label for="product-available">Disponible para la venta</label>
+                </div>
+
+                <button type="submit" class="btn-primary" style="align-self: flex-end;">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="./products.ts"></script>
+</body>
+</html>

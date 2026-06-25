@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "nombre": "Admin",
+    "apellido": "Sistema",
+    "email": "admin@admin.com",
+    "celular": "1145678901",
+    "rol": "admin",
+    "password": "admin"
+  },
+  {
+    "id": 2,
+    "nombre": "Juan",
+    "apellido": "Pérez",
+    "email": "cliente@food.com",
+    "celular": "1198765432",
+    "rol": "client",
+    "password": "cliente123"
+  }
+]

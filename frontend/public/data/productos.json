@@ -1,0 +1,192 @@
+[
+  {
+    "id": 1,
+    "nombre": "Hamburguesa Clásica",
+    "precio": 4500,
+    "descripcion": "Carne 150g, lechuga, tomate, cebolla morada y mayonesa",
+    "stock": 50,
+    "imagen": "/assets/burger.jpg",
+    "disponible": true,
+    "categoria": { "id": 1, "nombre": "Hamburguesas", "descripcion": "Hamburguesas artesanales con carne premium" }
+  },
+  {
+    "id": 2,
+    "nombre": "Hamburguesa Doble",
+    "precio": 6200,
+    "descripcion": "Doble carne 150g c/u, cheddar, panceta y salsa barbacoa",
+    "stock": 40,
+    "imagen": "/assets/burger-bbq.jpeg",
+    "disponible": true,
+    "categoria": { "id": 1, "nombre": "Hamburguesas", "descripcion": "Hamburguesas artesanales con carne premium" }
+  },
+  {
+    "id": 3,
+    "nombre": "Hamburguesa Completa",
+    "precio": 5500,
+    "descripcion": "Carne 150g, huevo, jamón, queso, lechuga y tomate",
+    "stock": 30,
+    "imagen": "/assets/burger-pollo.jpg",
+    "disponible": true,
+    "categoria": { "id": 1, "nombre": "Hamburguesas", "descripcion": "Hamburguesas artesanales con carne premium" }
+  },
+  {
+    "id": 4,
+    "nombre": "Hamburguesa Veggie",
+    "precio": 5000,
+    "descripcion": "Medallón de lentejas y quinoa, rúcula, tomato confitado y hummus",
+    "stock": 20,
+    "imagen": "/assets/burger-veggie.jpg",
+    "disponible": true,
+    "categoria": { "id": 1, "nombre": "Hamburguesas", "descripcion": "Hamburguesas artesanales con carne premium" }
+  },
+  {
+    "id": 5,
+    "nombre": "Pizza Mozzarella",
+    "precio": 3800,
+    "descripcion": "Mozzarella, salsa de tomate y orégano",
+    "stock": 25,
+    "imagen": "/assets/pizza-muzzarella.png",
+    "disponible": true,
+    "categoria": { "id": 2, "nombre": "Pizzas", "descripcion": "Pizzas al horno de barro" }
+  },
+  {
+    "id": 6,
+    "nombre": "Pizza Napolitana",
+    "precio": 4500,
+    "descripcion": "Mozzarella, rodajas de tomate, ajo, aceitunas y albahaca",
+    "stock": 25,
+    "imagen": "/assets/pizza-napolitana.jpg",
+    "disponible": true,
+    "categoria": { "id": 2, "nombre": "Pizzas", "descripcion": "Pizzas al horno de barro" }
+  },
+  {
+    "id": 7,
+    "nombre": "Pizza Fugazzeta",
+    "precio": 4800,
+    "descripcion": "Mozzarella, cebolla caramelizada, jamón y aceitunas",
+    "stock": 20,
+    "imagen": "/assets/pizza-fugazzeta.avif",
+    "disponible": true,
+    "categoria": { "id": 2, "nombre": "Pizzas", "descripcion": "Pizzas al horno de barro" }
+  },
+  {
+    "id": 8,
+    "nombre": "Pizza Especial",
+    "precio": 5200,
+    "descripcion": "Mozzarella, pepperoni, morrón, cebolla, huevo y aceitunas",
+    "stock": 15,
+    "imagen": "/assets/pizza-especial.jpg",
+    "disponible": true,
+    "categoria": { "id": 2, "nombre": "Pizzas", "descripcion": "Pizzas al horno de barro" }
+  },
+  {
+    "id": 9,
+    "nombre": "Empanada de Carne",
+    "precio": 1200,
+    "descripcion": "Carne picada, cebolla, huevo duro, aceitunas y especias",
+    "stock": 100,
+    "imagen": "/assets/empanada-carne.avif",
+    "disponible": true,
+    "categoria": { "id": 3, "nombre": "Empanadas", "descripcion": "Empanadas caseras horneadas" }
+  },
+  {
+    "id": 10,
+    "nombre": "Empanada de Pollo",
+    "precio": 1200,
+    "descripcion": "Pollo desmenuzado, cebolla, morrón y crema",
+    "stock": 80,
+    "imagen": "/assets/empanada-pollo.avif",
+    "disponible": true,
+    "categoria": { "id": 3, "nombre": "Empanadas", "descripcion": "Empanadas caseras horneadas" }
+  },
+  {
+    "id": 11,
+    "nombre": "Empanada Jamón y Queso",
+    "precio": 1100,
+    "descripcion": "Jamón cocido y mozzarella",
+    "stock": 90,
+    "imagen": "/assets/empanada-jyq.webp",
+    "disponible": false,
+    "categoria": { "id": 3, "nombre": "Empanadas", "descripcion": "Empanadas caseras horneadas" }
+  },
+  {
+    "id": 12,
+    "nombre": "Empanada de Verdura",
+    "precio": 1100,
+    "descripcion": "Espinaca, acelga, ricota y nuez moscada",
+    "stock": 60,
+    "imagen": "/assets/empanada-verdura.jpg",
+    "disponible": true,
+    "categoria": { "id": 3, "nombre": "Empanadas", "descripcion": "Empanadas caseras horneadas" }
+  },
+  {
+    "id": 13,
+    "nombre": "Coca-Cola 500ml",
+    "precio": 1500,
+    "descripcion": "Gaseosa Coca-Cola original 500ml",
+    "stock": 200,
+    "imagen": "/assets/coca.jpg",
+    "disponible": true,
+    "categoria": { "id": 4, "nombre": "Bebidas", "descripcion": "Bebidas frías y calientes" }
+  },
+  {
+    "id": 14,
+    "nombre": "Sprite 500ml",
+    "precio": 1500,
+    "descripcion": "Gaseosa Sprite 500ml",
+    "stock": 180,
+    "imagen": "/assets/sprite.jpg",
+    "disponible": true,
+    "categoria": { "id": 4, "nombre": "Bebidas", "descripcion": "Bebidas frías y calientes" }
+  },
+  {
+    "id": 15,
+    "nombre": "Agua Mineral 500ml",
+    "precio": 1000,
+    "descripcion": "Agua mineral sin gas 500ml",
+    "stock": 300,
+    "imagen": "/assets/agua.png",
+    "disponible": true,
+    "categoria": { "id": 4, "nombre": "Bebidas", "descripcion": "Bebidas frías y calientes" }
+  },
+  {
+    "id": 16,
+    "nombre": "Cerveza Artesanal 473ml",
+    "precio": 2500,
+    "descripcion": "Cerveza artesanal rubia 473ml",
+    "stock": 100,
+    "imagen": "/assets/cerveza.jpg",
+    "disponible": true,
+    "categoria": { "id": 4, "nombre": "Bebidas", "descripcion": "Bebidas frías y calientes" }
+  },
+  {
+    "id": 17,
+    "nombre": "Papas Fritas Clásicas",
+    "precio": 2500,
+    "descripcion": "Papas fritas bastón crocantes con sal parrillera",
+    "stock": 70,
+    "imagen": "/assets/papas.jpg",
+    "disponible": true,
+    "categoria": { "id": 5, "nombre": "Papas Fritas", "descripcion": "Acompañamientos crujientes" }
+  },
+  {
+    "id": 18,
+    "nombre": "Papas con Cheddar y Panceta",
+    "precio": 3500,
+    "descripcion": "Papas fritas bañadas en cheddar y panceta crocante",
+    "stock": 50,
+    "imagen": "/assets/cheddar.jpg",
+    "disponible": true,
+    "categoria": { "id": 5, "nombre": "Papas Fritas", "descripcion": "Acompañamientos crujientes" }
+  },
+  {
+    "id": 19,
+    "nombre": "Aros de Cebolla",
+    "precio": 2800,
+    "descripcion": "Aros de cebolla empanizados, servidos con salsa barbacoa",
+    "stock": 40,
+    "imagen": "/assets/aros.jpg",
+    "disponible": true,
+    "categoria": { "id": 5, "nombre": "Papas Fritas", "descripcion": "Acompañamientos crujientes" }
+  }
+]

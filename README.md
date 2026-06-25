@@ -7,21 +7,26 @@
 
 Este proyecto es una aplicación web dinámica desarrollada para la cátedra de **Programación III** (Tecnicatura Universitaria en Programación). 
 
-El proyecto es un **Trabajo Práctico Integrador** de entregas progresivas, donde la aplicación base va escalando en complejidad y seguridad a medida que se avanza en la cursada.
+El proyecto es un **Trabajo Práctico Integrador** de entregas progresivas, donde la aplicación base fue escalando en complejidad hasta llegar a esta versión final y completamente funcional.
 
 ---
 
-## 🚀 Objetivo de esta Entrega: TypeScript & Autenticación
+## 🚀 Objetivo de la Entrega Final
 
-En esta etapa dejamos atrás el HTML estático con JavaScript vainilla y nos pasamos a algo mucho más robusto. Implementé un sistema de login, persistencia de datos y protección de rutas.
+En esta etapa definitiva, el sistema integra la gestión completa de la tienda y el panel de administración, utilizando persistencia de datos local, tipado estricto y protección de rutas.
 
-### ✨ Características Implementadas
+### ✨ Características Implementadas (Consigna)
 
-* **Tipado Estricto**: Migración completa a **TypeScript**, asegurando contratos de datos rígidos mediante el uso de interfaces (`IUser`, `Rol`).
-* **Autenticación (Login / Registro)**: Sistema de captación de datos y validación de credenciales en tiempo real.
-* **Persistencia de Datos**: Uso  de `localStorage` simulando una base de datos de usuarios (`users`) y mantenimiento de la sesión activa del navegador (`userData`).
-* **Autorización y Guards**: Implementación de un interceptor centralizado (`main.ts`) que bloquea o redirige las peticiones según el rol (`admin` o `client`).
-* **Experiencia de Usuario (UX)**: Integración de la librería **SweetAlert2** para manejar todas las notificaciones, alertas de seguridad y confirmaciones de forma profesional e intuitiva.
+* **Consumo Inicial de Datos (JSON)**: El sistema arranca leyendo los archivos estáticos proveídos por la cátedra (`categorias.json`, `productos.json`, `pedidos.json`, `usuarios.json`) ubicados en la carpeta `public/data`.
+* **Persistencia en LocalStorage**: Una vez leídos los JSON iniciales, toda la base de datos se vuelca al `localStorage`. A partir de allí, todas las operaciones de CRUD (crear, editar, eliminar) impactan y persisten sobre el almacenamiento local del navegador.
+* **Panel de Administración Funcional**: 
+  - Gestión completa de **Categorías** y **Productos** (Altas, Bajas lógicas y Modificaciones).
+  - Listado y cambio de estados para los **Pedidos**.
+* **Sincronización de Tienda**: La interfaz pública de la tienda (Catálogo y Carrito) lee de forma dinámica los productos y categorías disponibles directamente de la base de datos local, filtrando aquellos ítems que han sido dados de baja por el administrador.
+* **Autenticación y Guards**: 
+  - Sistema de Login para clientes y administradores.
+  - Protección estricta de rutas: los usuarios normales no pueden acceder al panel de administración.
+* **Migración a TypeScript**: Todo el proyecto fue tipado estrictamente utilizando interfaces formales para asegurar los contratos de datos de las entidades principales.
 
 ---
 
@@ -31,17 +36,15 @@ El código fuente respeta una arquitectura modular separada por responsabilidade
 
 ```text
 📦 root
- ┣ 📂 assets       # Imágenes y recursos estáticos
- ┣ 📂 css          # Hojas de estilo globales
- ┣ 📂 src
- ┃ ┣ 📂 pages      # Contenedores de las vistas
- ┃ ┃ ┣ 📂 admin    # Panel de administración (Protegido)
- ┃ ┃ ┣ 📂 auth     # Vistas de Registro y Login
- ┃ ┃ ┗ 📂 client   # Tienda principal (Carrito y Catálogo)
- ┃ ┣ 📂 types      # Contratos de datos (Interfaces)
- ┃ ┗ 📂 utils      # Lógica de verificación y sesión
- ┣ 📜 index.html   # Entry point (Redireccionador)
- ┗ 📜 package.json # Dependencias y scripts
+ ┣ 📂 frontend
+ ┃ ┣ 📂 public/data    # Archivos JSON iniciales de la cátedra
+ ┃ ┣ 📂 public/assets  # Imágenes y recursos estáticos
+ ┃ ┣ 📂 src
+ ┃ ┃ ┣ 📂 pages      # Contenedores de las vistas (Admin, Auth, Store)
+ ┃ ┃ ┣ 📂 types      # Contratos de datos (Interfaces)
+ ┃ ┃ ┗ 📂 utils      # Lógica de persistencia (storage.ts) y autenticación
+ ┃ ┣ 📜 index.html   # Entry point
+ ┃ ┗ 📜 package.json # Dependencias y scripts
 ```
 
 ---
@@ -53,8 +56,8 @@ El código fuente respeta una arquitectura modular separada por responsabilidade
 
 Para correr este proyecto en un entorno de desarrollo local, asegúrate de tener [Node.js](https://nodejs.org/) instalado.
 
-1. **Clonar/Descomprimir el repositorio** y abrir una terminal en el directorio raíz.
-2. **Instalar las dependencias** (Vite, TypeScript, SweetAlert2):
+1. **Clonar/Descomprimir el repositorio** y abrir una terminal en la carpeta `frontend`.
+2. **Instalar las dependencias**:
    ```bash
    npm install
    ```
@@ -68,16 +71,16 @@ Para correr este proyecto en un entorno de desarrollo local, asegúrate de tener
 
 ## 🧪 Instrucciones de Prueba (Roles)
 
-Por defecto, la "base de datos" inicia vacía. (Hasta implementar una base de datos real)
+Al arrancar la página por primera vez, la base de datos se autocompletará con los JSON de la cátedra, proveyendo cuentas por defecto para realizar las pruebas.
 
-1. **Cliente**: Haz clic en "Registrate" y crea una cuenta. El sistema te asignará el rol de `client`. Podrás ver la tienda y agregar productos al carrito, pero el acceso a `/admin/` te será denegado.
-2. **Administrador**: Para probar el guard de administrador, puedes inyectar un usuario admin directamente en el LocalStorage ejecutando el siguiente código en la consola (F12) del navegador:
-```javascript
-const users = JSON.parse(localStorage.getItem('users')) || [];
-users.push({ email: "admin@admin.com", password: "admin", rol: "admin" });
-localStorage.setItem("users", JSON.stringify(users));
-```
-   *Luego, inicia sesión con `admin@admin.com` y clave `admin`.*
+1. **Cliente**: Puedes crear tu propia cuenta desde el registro, o iniciar sesión con:
+   - **Email**: `cliente@food.com`
+   - **Clave**: `123456`
+   - *Este rol permite comprar y ver el catálogo, pero tiene el acceso bloqueado al panel de control.*
+2. **Administrador**: Para probar la gestión completa y el guard de administrador, inicia sesión con las credenciales maestras pre-generadas:
+   - **Email**: `admin@admin.com`
+   - **Clave**: `admin`
+   - *Este rol otorga acceso total al panel de control.*
 
 ---
-*Desarrollado como proyecto integrador universitario - 2026*
+*Desarrollado como Trabajo Práctico Integrador - Programación III - 2026*

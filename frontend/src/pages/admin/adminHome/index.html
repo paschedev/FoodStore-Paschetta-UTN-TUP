@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Food Store Admin</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/src/pages/admin/admin.css">
+</head>
+<body class="admin-layout">
+
+    <aside class="admin-sidebar">
+        <div class="admin-sidebar-header">
+            <h2>Administración</h2>
+            <p>Panel de control</p>
+        </div>
+        <nav class="admin-sidebar-nav">
+            <a href="/src/pages/admin/adminHome/index.html" class="admin-nav-item active">📊 Dashboard</a>
+            <a href="/src/pages/admin/categories/index.html" class="admin-nav-item">📁 Categorías</a>
+            <a href="/src/pages/admin/products/index.html" class="admin-nav-item">🍔 Productos</a>
+            <a href="/src/pages/admin/orders/index.html" class="admin-nav-item">📦 Pedidos</a>
+            <div style="height: 1px; background-color: var(--color-borde); margin: 15px 20px;"></div>
+            <a href="/src/pages/store/home/home.html" class="admin-nav-item">🏪 Ver Tienda</a>
+        </nav>
+    </aside>
+
+    <div class="admin-content">
+        <header class="admin-topbar">
+            <a href="#" class="admin-topbar-logo">🍕 Food Store</a>
+            <div class="admin-topbar-links">
+                <a href="/src/pages/store/home/home.html">Tienda</a>
+                <a href="/src/pages/admin/adminHome/index.html">Panel Admin</a>
+                <span style="color: var(--color-borde);">|</span>
+                <span id="admin-name">Admin Sistema</span>
+                <button id="logout-btn" class="btn-cerrar-sesion">Cerrar Sesión</button>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <h1 style="margin-bottom: 25px; color: #343a40;">Panel de Administración</h1>
+
+            <div class="dashboard-cards">
+                <div class="dash-card card-purple">
+                    <h3>📁 Categorías</h3>
+                    <div class="value" id="total-categories">0</div>
+                    <a href="/src/pages/admin/categories/index.html" class="btn-gestionar">Gestionar</a>
+                </div>
+                <div class="dash-card card-pink">
+                    <h3>🍔 Productos</h3>
+                    <div class="value" id="total-products">0</div>
+                    <a href="/src/pages/admin/products/index.html" class="btn-gestionar">Gestionar</a>
+                </div>
+                <div class="dash-card card-blue">
+                    <h3>📦 Pedidos</h3>
+                    <div class="value" id="total-orders">0</div>
+                    <a href="/src/pages/admin/orders/index.html" class="btn-gestionar">Gestionar</a>
+                </div>
+                <div class="dash-card card-green">
+                    <h3>✅ Disponibles</h3>
+                    <div class="value" id="total-available">0</div>
+                    <span style="font-size: 0.85rem; z-index: 1;">Productos activos</span>
+                </div>
+            </div>
+
+            <div class="resumen-rapido">
+                <h3>📊 Resumen Rápido</h3>
+                <div class="resumen-grid">
+                    <div class="resumen-item">
+                        <span>💰 Ingresos Totales</span>
+                        <strong class="text-green" id="total-revenue">$0.00</strong>
+                    </div>
+                    <div class="resumen-item">
+                        <span>⏳ Pedidos Pendientes</span>
+                        <strong class="text-orange" id="pending-orders">0</strong>
+                    </div>
+                    <div class="resumen-item">
+                        <span>🍳 En Preparación</span>
+                        <strong class="text-blue" id="prep-orders">0</strong>
+                    </div>
+                    <div class="resumen-item">
+                        <span>✅ Completados</span>
+                        <strong class="text-green" id="completed-orders">0</strong>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="./adminHome.ts"></script>
+</body>
+</html>

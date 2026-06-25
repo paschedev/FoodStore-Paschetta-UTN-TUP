@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pedidos - Food Store Admin</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/src/pages/admin/admin.css">
+</head>
+<body class="admin-layout">
+
+    <aside class="admin-sidebar">
+        <div class="admin-sidebar-header">
+            <h2>Administración</h2>
+            <p>Panel de control</p>
+        </div>
+        <nav class="admin-sidebar-nav">
+            <a href="/src/pages/admin/adminHome/index.html" class="admin-nav-item">📊 Dashboard</a>
+            <a href="/src/pages/admin/categories/index.html" class="admin-nav-item">📁 Categorías</a>
+            <a href="/src/pages/admin/products/index.html" class="admin-nav-item">🍔 Productos</a>
+            <a href="/src/pages/admin/orders/index.html" class="admin-nav-item active">📦 Pedidos</a>
+            <div style="height: 1px; background-color: var(--color-borde); margin: 15px 20px;"></div>
+            <a href="/src/pages/store/home/home.html" class="admin-nav-item">🏪 Ver Tienda</a>
+        </nav>
+    </aside>
+
+    <div class="admin-content">
+        <header class="admin-topbar">
+            <a href="#" class="admin-topbar-logo">🍕 Food Store</a>
+            <div class="admin-topbar-links">
+                <a href="/src/pages/store/home/home.html">Tienda</a>
+                <a href="/src/pages/admin/adminHome/index.html">Panel Admin</a>
+                <span style="color: var(--color-borde);">|</span>
+                <span id="admin-name">Admin Sistema</span>
+                <button id="logout-btn" class="btn-cerrar-sesion">Cerrar Sesión</button>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <div class="admin-header-actions">
+                <h1 style="color: #343a40;">Gestión de Pedidos</h1>
+            </div>
+
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Nº Pedido</th>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Cant. Prod.</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-table-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Order Status Modal -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <span class="close" id="close-order-modal">&times;</span>
+            <h2>Actualizar Estado</h2>
+            <form id="order-form" style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px;">
+                <input type="hidden" id="order-id">
+                
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <label for="order-status">Estado del Pedido</label>
+                    <select id="order-status" required style="padding: 10px; border-radius: 5px; border: 1px solid var(--color-borde);">
+                        <option value="PENDIENTE">Pendiente</option>
+                        <option value="CONFIRMADO">Confirmado</option>
+                        <option value="EN_PREPARACION">En Preparación</option>
+                        <option value="ENTREGADO">Entregado</option>
+                        <option value="TERMINADO">Terminado</option>
+                        <option value="CANCELADO">Cancelado</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary" style="align-self: flex-end;">Actualizar</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="./orders.ts"></script>
+</body>
+</html>
