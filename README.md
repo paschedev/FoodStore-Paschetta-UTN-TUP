@@ -25,6 +25,24 @@ En esta etapa el sistema integra la gestión completa de la tienda y el panel de
 
 ---
 
+## App de Consola (Backend JPA)
+
+El proyecto incluye una app de consola interactiva hecha en Java (Main.java) que sirve como panel de control directo para la base de datos relacional (H2).
+Esta consola usa JPA (Hibernate) para interactuar con la db y permite gestionar el 100% de las entidades.
+
+Características principales de la app de consola:
+* Alta transaccional de pedidos: Al generar un pedido, el sistema automáticamente valida si hay stock suficiente de los productos elegidos. Si todo está ok, genera el detalle del pedido y descuenta el stock del inventario dentro de una misma transacción atómica usando el EntityManager. Si algo falla, hace un rollback automático para mantener la consistencia de la db.
+* Bajas Lógicas: Ningún registro se borra físicamente. La consola hace un update del campo "eliminado" para ocultarlos del sistema sin romper las relaciones.
+* Menú de Reportes: Consultas JPQL puras para buscar pedidos por usuario, filtrar por estado (PENDIENTE, CONFIRMADO, etc.) y calcular el total de plata facturada.
+
+Para probar la consola, podés correr el archivo Main.java desde tu IDE o usar el wrapper de gradle:
+   ```bash
+   cd backend
+   ./gradlew run
+   ```
+
+---
+
 ## Estructura del Proyecto
 
 El código fuente respeta una arquitectura modular separada por responsabilidades:
