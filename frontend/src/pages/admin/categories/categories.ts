@@ -5,7 +5,7 @@ import { getCategories, saveCategory, deleteCategory } from '../../../utils/stor
 import { ICategory } from '../../../types';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Topbar Setup
+
     const user = getCurrentUser();
     if (user) {
         const adminName = document.getElementById('admin-name');
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Categories Logic
+
     const tbody = document.getElementById('categories-table-body');
     const modal = document.getElementById('category-modal');
     const form = document.getElementById('category-form') as HTMLFormElement;
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tbody.appendChild(tr);
         });
 
-        // Attach events
+
         document.querySelectorAll('.edit-cat').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         Swal.fire('Guardado', 'Categoría guardada con éxito', 'success');
     });
 
-    // Close modal when clicking outside
+
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
             closeModal();

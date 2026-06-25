@@ -1,11 +1,11 @@
 import { ICategory, Product, Order } from '../types';
 
-// Helper to check if local storage is populated
+// chequea si el storage local ya tiene info
 export const isDataInitialized = () => {
   return localStorage.getItem('products') !== null;
 };
 
-// Initialize data from JSON files
+// inicializa la db desde los JSON
 export const initData = async () => {
   if (isDataInitialized()) return;
 
@@ -26,7 +26,7 @@ export const initData = async () => {
     localStorage.setItem('products', JSON.stringify(products));
     localStorage.setItem('orders', JSON.stringify(orders));
     
-    // Auth util already manages users, but let's prepopulate it here if empty
+    // precarga de usuarios en la db
     if (!localStorage.getItem('users')) {
       localStorage.setItem('users', JSON.stringify(users));
     }
@@ -35,7 +35,7 @@ export const initData = async () => {
   }
 };
 
-// Products
+// productos de la db
 export const getProducts = (): Product[] => {
   return JSON.parse(localStorage.getItem('products') || '[]');
 };
@@ -46,7 +46,7 @@ export const saveProduct = (product: Product) => {
   if (index >= 0) {
     products[index] = product;
   } else {
-    // Generate new ID if not exist
+    // genera id nuevo si no existe
     const maxId = products.reduce((max, p) => Math.max(max, p.id), 0);
     product.id = maxId + 1;
     products.push(product);
@@ -58,12 +58,12 @@ export const deleteProduct = (id: number) => {
   const products = getProducts();
   const index = products.findIndex(p => p.id === id);
   if (index >= 0) {
-    products[index].eliminado = true; // Logical delete
+    products[index].eliminado = true; // borrado logico
     localStorage.setItem('products', JSON.stringify(products));
   }
 };
 
-// Categories
+// categorias de la db
 export const getCategories = (): ICategory[] => {
   return JSON.parse(localStorage.getItem('categories') || '[]');
 };
@@ -88,7 +88,7 @@ export const deleteCategory = (id: number) => {
     categories[index].eliminado = true;
     localStorage.setItem('categories', JSON.stringify(categories));
 
-    // Handle products orphaned by this category deletion
+    // manejo de productos huerfanos en la db
     let sinCat = categories.find(c => c.nombre === 'Sin Categoría' && !c.eliminado);
     if (!sinCat) {
       const maxId = categories.reduce((max, c) => Math.max(max, c.id), 0);
@@ -124,7 +124,7 @@ export const deleteCategory = (id: number) => {
   }
 };
 
-// Orders
+// pedidos de la db
 export const getOrders = (): Order[] => {
   return JSON.parse(localStorage.getItem('orders') || '[]');
 };

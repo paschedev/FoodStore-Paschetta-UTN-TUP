@@ -9,13 +9,7 @@ import jakarta.persistence.EntityTransaction;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Repositorio genérico con las operaciones CRUD comunes a todas las
- * entidades que extienden Base. Cada método abre su propio EntityManager y
- * lo cierra en un bloque finally.
- *
- * @param <T> tipo de entidad gestionada.
- */
+// logica basica CRUD para la db
 public abstract class BaseRepository<T extends Base> {
 
     protected final EntityManagerFactory emf;
@@ -30,12 +24,7 @@ public abstract class BaseRepository<T extends Base> {
         return entityClass;
     }
 
-    /**
-     * Alta o actualización. Si la entidad no tiene id usa persist() (alta: la
-     * propia instancia recibe el ID generado); si ya tiene id usa merge()
-     * (actualización). Retorna la entidad gestionada, de la cual debe leerse
-     * el ID generado. Hace rollback ante excepción.
-     */
+
     public T guardar(T entity) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -60,10 +49,7 @@ public abstract class BaseRepository<T extends Base> {
         }
     }
 
-    /**
-     * Busca por ID. Retorna Optional.of(entidad) si existe, Optional.empty()
-     * en caso contrario.
-     */
+
     public Optional<T> buscarPorId(Long id) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -74,10 +60,7 @@ public abstract class BaseRepository<T extends Base> {
         }
     }
 
-    /**
-     * Lista las entidades activas (eliminado = false). Construye la JPQL con
-     * el nombre simple de la clase para que funcione con todas las entidades.
-     */
+
     public List<T> listarActivos() {
         EntityManager em = emf.createEntityManager();
         try {
@@ -90,11 +73,7 @@ public abstract class BaseRepository<T extends Base> {
         }
     }
 
-    /**
-     * Baja lógica: busca la entidad por ID, marca eliminado = true y
-     * sincroniza con merge() (la entidad ya tiene id). Retorna true si la
-     * encontró y la dio de baja; false si no existe.
-     */
+
     public boolean eliminarLogico(Long id) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();

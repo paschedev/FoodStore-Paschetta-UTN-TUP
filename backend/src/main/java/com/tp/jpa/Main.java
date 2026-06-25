@@ -1,28 +1,13 @@
 package com.tp.jpa;
 
-import com.tp.jpa.model.enums.EstadoPedido;
-import com.tp.jpa.model.*;
-import com.tp.jpa.model.enums.FormaPago;
-import com.tp.jpa.model.enums.Rol;
 import com.tp.jpa.repository.CategoriaRepository;
 import com.tp.jpa.repository.PedidoRepository;
 import com.tp.jpa.repository.ProductoRepository;
 import com.tp.jpa.repository.UsuarioRepository;
 import com.tp.jpa.util.JPAUtil;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
 import java.util.Scanner;
 
-/**
- * Clase principal: menú de consola del sistema Food Store.
- * Orden de uso natural: Categorías -> Productos -> Usuarios -> Pedidos.
- */
+// menu principal de consola para la app
 public class Main {
 
     private static final Scanner sc = new Scanner(System.in);
@@ -59,37 +44,30 @@ public class Main {
         System.out.println("Aplicación finalizada.");
     }
 
-    // ── Submenús ─────────────────────────────────────────────────
+
 
     private static void menuCategorias() {
-        // TODO: Implementar submenú de Categorías.
-        // Opciones: 1-Alta  2-Modificar  3-Baja lógica  4-Listado  0-Volver
+        // TODO: menu categorias
         System.out.println("[Categorías] → TODO: implementar");
     }
 
     private static void menuProductos() {
-        // TODO: Implementar submenú de Productos.
-        // Opciones: 1-Alta  2-Modificar  3-Baja lógica  4-Listado  0-Volver
+        // TODO: menu productos
         System.out.println("[Productos] → TODO: implementar");
     }
 
     private static void menuUsuarios() {
-        // TODO: Implementar submenú de Usuarios.
-        // Opciones: 1-Alta  2-Modificar  3-Baja lógica  4-Listado  5-Buscar por mail  0-Volver
+        // TODO: menu usuarios
         System.out.println("[Usuarios] → TODO: implementar");
     }
 
     private static void menuPedidos() {
-        // TODO: Implementar submenú de Pedidos.
-        // Opciones: 1-Alta  2-Cambiar estado  3-Baja lógica  4-Listado
-        //           5-Por usuario  6-Por estado  0-Volver
+        // TODO: menu ordenes
         System.out.println("[Pedidos] → TODO: implementar");
     }
 
     private static void menuReportes() {
-        // TODO: Implementar submenú de Reportes.
-        // Opciones: 1-Productos por categoría  2-Pedidos por usuario
-        //           3-Pedidos por estado  4-Total facturado  0-Volver
+        // TODO: menu reportes
         System.out.println("[Reportes] → TODO: implementar");
     }
 

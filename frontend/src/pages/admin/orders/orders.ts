@@ -5,7 +5,7 @@ import { getOrders, updateOrderStatus } from '../../../utils/storage';
 import { Order, OrderStatus } from '../../../types';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Topbar Setup
+
     const user = getCurrentUser();
     if (user) {
         const adminName = document.getElementById('admin-name');
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Orders Logic
+
     const tbody = document.getElementById('orders-table-body');
     const modal = document.getElementById('order-modal');
     const form = document.getElementById('order-form') as HTMLFormElement;
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!tbody) return;
         tbody.innerHTML = '';
         
-        // Load orders and sort by date (newest first)
+
         const orders = getOrders().sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
 
         orders.forEach(order => {
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tbody.appendChild(tr);
         });
 
-        // Attach events
+
         document.querySelectorAll('.edit-order').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         Swal.fire('Actualizado', 'Estado del pedido actualizado con éxito', 'success');
     });
 
-    // Close modal when clicking outside
+
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
             closeModal();

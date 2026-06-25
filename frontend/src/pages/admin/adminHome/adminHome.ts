@@ -4,7 +4,7 @@ import { logoutUser, getCurrentUser } from '../../../utils/auth';
 import { getCategories, getProducts, getOrders } from '../../../utils/storage';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Topbar Setup
+
     const user = getCurrentUser();
     if (user) {
         const adminName = document.getElementById('admin-name');
@@ -33,20 +33,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Populate Dashboard Data
+
     const categories = getCategories().filter(c => !c.eliminado);
     const products = getProducts().filter(p => !p.eliminado);
     const orders = getOrders();
 
     const availableProducts = products.filter(p => p.disponible).length;
 
-    // Totals
+
     document.getElementById('total-categories')!.textContent = categories.length.toString();
     document.getElementById('total-products')!.textContent = products.length.toString();
     document.getElementById('total-orders')!.textContent = orders.length.toString();
     document.getElementById('total-available')!.textContent = availableProducts.toString();
 
-    // Orders stats
+
     const pendingOrders = orders.filter(o => o.estado === 'PENDIENTE').length;
     const prepOrders = orders.filter(o => o.estado === 'EN_PREPARACION').length;
     const completedOrders = orders.filter(o => o.estado === 'ENTREGADO' || o.estado === 'TERMINADO').length;

@@ -5,7 +5,7 @@ import { getProducts, getCategories, saveProduct, deleteProduct } from '../../..
 import { Product } from '../../../types';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Topbar Setup
+
     const user = getCurrentUser();
     if (user) {
         const adminName = document.getElementById('admin-name');
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Products Logic
+
     const tbody = document.getElementById('products-table-body');
     const modal = document.getElementById('product-modal');
     const form = document.getElementById('product-form') as HTMLFormElement;
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         products.forEach(prod => {
             const tr = document.createElement('tr');
             
-            // Category can be an object or just name depending on structure
+
             const catName = prod.categorias && prod.categorias.length > 0 
                 ? prod.categorias[0].nombre 
                 : (prod as any).categoria?.nombre || '-';
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tbody.appendChild(tr);
         });
 
-        // Attach events
+
         document.querySelectorAll('.edit-prod').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
             eliminado: false,
             createdAt: new Date().toISOString(),
             categorias: category ? [category] : [],
-            // compat for old data
+
             categoria: category
         } as Product;
 
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         Swal.fire('Guardado', 'Producto guardado con éxito', 'success');
     });
 
-    // Close modal when clicking outside
+
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
             closeModal();

@@ -3,11 +3,7 @@ package com.tp.jpa.util;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-/**
- * Mantiene una única instancia de EntityManagerFactory para toda la
- * aplicación. Se obtiene con getEntityManagerFactory() y se cierra al
- * finalizar con close().
- */
+// manager de conexion de la db
 public class JPAUtil {
 
     private static final String PERSISTENCE_UNIT = "foodstorePU";

@@ -17,7 +17,7 @@ export const findUserByEmail = (email: string): IUser | undefined => {
 };
 
 export const loginUser = (user: IUser): void => {
-    // Save userData without password
+    // guarda el usuario en la db
     const { password, ...userData } = user;
     localStorage.setItem('userData', JSON.stringify(userData));
 };

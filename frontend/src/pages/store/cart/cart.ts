@@ -23,12 +23,12 @@ const actualizarCarritoUI = () => {
 };
 
 const renderizarCarrito = () => {
-  // Update local cart products with the latest data from localStorage
+
   carrito = carrito.map(item => {
     const freshProduct = productos.find(p => p.id === item.producto.id);
     return freshProduct ? { ...item, producto: freshProduct } : item;
   }).filter(item => {
-    // Remove if product is deleted or unavailable
+
     return item.producto.disponible && !item.producto.eliminado;
   });
   localStorage.setItem("carrito", JSON.stringify(carrito));
@@ -63,7 +63,7 @@ const renderizarCarrito = () => {
           contenedor.appendChild(div);
       });
 
-      // Cart buttons events
+
       document.querySelectorAll('.btn-sumar').forEach(btn => {
           btn.addEventListener('click', (e) => {
               const index = parseInt((e.target as HTMLElement).getAttribute('data-index') || '0');
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Intercept admin link
+
   const adminLink = document.getElementById('admin-link');
   adminLink?.addEventListener('click', (e) => {
     const user = getCurrentUser();

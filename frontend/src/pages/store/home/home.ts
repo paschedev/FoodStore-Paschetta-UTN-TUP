@@ -36,7 +36,7 @@ const renderizarProductos = (lista: any[]) => {
     contenedor.appendChild(article);
   });
 
-  // Event listeners de los add buttons
+
   const botones = document.querySelectorAll('.btn-agregar');
   botones.forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -126,7 +126,7 @@ const actualizarCarritoUI = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Cargar productos de localStorage y filtrar los no disponibles o eliminados
+  // carga productos activos de la db
   productos = getProducts().filter(p => p.disponible && !p.eliminado);
 
   cargarCategorias();
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
   activarBuscador();
   actualizarCarritoUI();
 
-  // Intercept admin link
+
   const adminLink = document.getElementById('admin-link');
   adminLink?.addEventListener('click', (e) => {
     const user = getCurrentUser();
