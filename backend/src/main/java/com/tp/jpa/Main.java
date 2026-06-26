@@ -1,7 +1,6 @@
 package com.tp.jpa;
 
 import com.tp.jpa.model.Categoria;
-import com.tp.jpa.model.DetallePedido;
 import com.tp.jpa.model.Pedido;
 import com.tp.jpa.model.Producto;
 import com.tp.jpa.model.Usuario;
