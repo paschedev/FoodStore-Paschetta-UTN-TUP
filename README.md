@@ -8,7 +8,7 @@ El proyecto es un Trabajo Práctico Integrador de entregas progresivas, donde la
 
 ## Objetivo de la Entrega Final
 
-En esta etapa el sistema integra la gestión completa de la tienda y el panel de administración, utilizando persistencia de datos local, tipado estricto y protección de rutas.
+En esta etapa el sistema integra la gestión completa de la tienda y el panel de administración, utilizando persistencia de datos local, tipado estricto y protección de rutas. Ademas de mejoras varias que afectan a la experiencia de usuario y la implementacion de menu de consola (JPA + Hibernate + H2).
 
 ### Características Implementadas (Consigna)
 
@@ -48,9 +48,9 @@ Para probar la consola, podés correr el archivo Main.java desde tu IDE o usar e
 El código fuente respeta una arquitectura modular separada por responsabilidades:
 
 ```text
-root
+
  ┣ frontend
- ┃ ┣ public/data    # Archivos JSON iniciales de la cátedra
+ ┃ ┣ public/data    # Archivos JSON iniciales de la cátedra (leves modificaciones)
  ┃ ┣ public/assets  # Imágenes y recursos estáticos
  ┃ ┣ src
  ┃ ┃ ┣ pages      # Contenedores de las vistas (Admin, Auth, Store)
@@ -64,8 +64,8 @@ root
 
 ## Instalación y Ejecución
 
-> [!WARNING]
-> Aclaración sobre el archivo .zip: No se incluye la carpeta node_modules para reducir el peso de la entrega. Asegúrese de ejecutar el comando de instalación de dependencias antes de iniciar el proyecto.
+> [ATENCION]
+> Aclaración sobre el archivo .zip: No se incluye la carpeta node_modules de dependencias. Asegurese de ejecutar el comando de instalación de dependencias antes de iniciar el proyecto. (npm i)
 
 Para correr este proyecto en un entorno de desarrollo local, asegurate de tener Node.js instalado.
 
@@ -78,25 +78,23 @@ Para correr este proyecto en un entorno de desarrollo local, asegurate de tener 
    ```bash
    npm run dev
    ```
-4. Abrir en el navegador: Acceder al enlace local que da la consola (por defecto http://localhost:5173/).
+4. Abrir en el navegador: Acceder al enlace local que da la consola.
 
 ---
 
 ## Instrucciones de Prueba (Roles)
 
-Al arrancar la página por primera vez, la base de datos se autocompletará con los JSON de la cátedra, proveyendo cuentas por defecto para realizar las pruebas.
+Al arrancar la pagina por primera vez, la base de datos se autocompletara con los JSON de la catedra, proveyendo cuentas por defecto para realizar las pruebas.
 
-1. Cliente: Podés crear tu propia cuenta desde el registro, o iniciar sesión con:
-   - Email: cliente@food.com
-   - Clave: 123456
-   - Este rol permite comprar y ver el catálogo, pero tiene el acceso bloqueado al panel de control.
-2. Administrador: Para probar la gestión completa y el guard de administrador, iniciá sesión con las credenciales maestras pre-generadas:
+1. Cliente: Podés crear tu propia cuenta desde el registro:
+   - Este rol permite comprar y ver el catalogo, pero tiene el acceso bloqueado al panel de control. Lo cual no redirige al login como antes ni muestra la vista del panel, si no que ejecuta una SweetAlert y no permite el acceso.
+2. Administrador: Para probar la gestión completa y el guard de administrador, inicia sesión con las credenciales ya generadas:
    - Email: admin@admin.com
    - Clave: admin
-   - Este rol otorga acceso total al panel de control.
+   - Este rol otorga acceso total al panel de admin.
 
 ---
 
-## Presentación en Video
+## Presentacion en Video
 
- https://youtu.be/nOMo0kr7dkw
+ https://youtu.be/s19p0Vjs6Aw

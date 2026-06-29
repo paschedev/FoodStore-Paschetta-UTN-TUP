@@ -35,8 +35,8 @@ public class Main {
         boolean salir = false;
         while (!salir) {
             System.out.println();
-            System.out.println("===== FOOD STORE - MENÚ PRINCIPAL =====");
-            System.out.println("1. Gestionar Categorías");
+            System.out.println("===== FOOD STORE - MENU PRINCIPAL =====");
+            System.out.println("1. Gestionar Categorias");
             System.out.println("2. Gestionar Productos");
             System.out.println("3. Gestionar Usuarios");
             System.out.println("4. Gestionar Pedidos");
@@ -45,13 +45,26 @@ public class Main {
             System.out.print("Opción: ");
             String op = sc.nextLine().trim();
             switch (op) {
-                case "1": menuCategorias(); break;
-                case "2": menuProductos(); break;
-                case "3": menuUsuarios(); break;
-                case "4": menuPedidos(); break;
-                case "5": menuReportes(); break;
-                case "0": salir = true; break;
-                default: System.out.println("Opción inválida.");
+                case "1":
+                    menuCategorias();
+                    break;
+                case "2":
+                    menuProductos();
+                    break;
+                case "3":
+                    menuUsuarios();
+                    break;
+                case "4":
+                    menuPedidos();
+                    break;
+                case "5":
+                    menuReportes();
+                    break;
+                case "0":
+                    salir = true;
+                    break;
+                default:
+                    System.out.println("Opción inválida.");
             }
         }
         JPAUtil.close();
@@ -61,46 +74,61 @@ public class Main {
     private static void menuCategorias() {
         boolean salir = false;
         while (!salir) {
-            System.out.println("\n--- GESTIÓN DE CATEGORÍAS ---");
-            System.out.println("1-Alta 2-Modificar 3-Baja lógica 4-Listado 0-Volver");
-            System.out.print("Opción: ");
+            System.out.println("\n--- GESTION DE CATEGORIAS ---");
+            System.out.println("1-Alta\n2-Modificar\n3-Baja lógica\n4-Listado\n0-Volver");
+            System.out.print("Opcion: ");
             String op = sc.nextLine().trim();
             switch (op) {
                 case "1":
                     System.out.print("Nombre (obligatorio): ");
                     String nom = sc.nextLine().trim();
-                    if (nom.isEmpty()) { System.out.println("Error: vacío."); break; }
+                    if (nom.isEmpty()) {
+                        System.out.println("Error: vacío.");
+                        break;
+                    }
                     System.out.print("Descripción: ");
                     String desc = sc.nextLine().trim();
                     Categoria c = Categoria.builder().nombre(nom).descripcion(desc).build();
                     try {
                         c = categoriaRepo.guardar(c);
                         System.out.println("Categoría ID: " + c.getId());
-                    } catch (Exception e) { System.out.println("Error: " + e.getMessage()); }
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
                     break;
                 case "2":
                     System.out.print("ID: ");
                     Long idMod = Long.parseLong(sc.nextLine().trim());
                     Optional<Categoria> optC = categoriaRepo.buscarPorId(idMod);
-                    if (optC.isEmpty() || optC.get().isEliminado()) { System.out.println("Error"); break; }
+                    if (optC.isEmpty() || optC.get().isEliminado()) {
+                        System.out.println("Error");
+                        break;
+                    }
                     Categoria cMod = optC.get();
                     System.out.print("Nuevo Nombre (Enter conserva): ");
-                    String nNom = sc.nextLine().trim(); if (!nNom.isEmpty()) cMod.setNombre(nNom);
+                    String nNom = sc.nextLine().trim();
+                    if (!nNom.isEmpty())
+                        cMod.setNombre(nNom);
                     System.out.print("Nueva Descripción: ");
-                    String nDesc = sc.nextLine().trim(); if (!nDesc.isEmpty()) cMod.setDescripcion(nDesc);
+                    String nDesc = sc.nextLine().trim();
+                    if (!nDesc.isEmpty())
+                        cMod.setDescripcion(nDesc);
                     categoriaRepo.guardar(cMod);
                     System.out.println("Guardado.");
                     break;
                 case "3":
                     System.out.print("ID baja: ");
-                    if (categoriaRepo.eliminarLogico(Long.parseLong(sc.nextLine().trim()))) System.out.println("Baja exitosa.");
+                    if (categoriaRepo.eliminarLogico(Long.parseLong(sc.nextLine().trim())))
+                        System.out.println("Baja exitosa.");
                     break;
                 case "4":
                     for (Categoria cat : categoriaRepo.listarActivos()) {
                         System.out.println(cat.getId() + " | " + cat.getNombre());
                     }
                     break;
-                case "0": salir = true; break;
+                case "0":
+                    salir = true;
+                    break;
             }
         }
     }
@@ -108,8 +136,8 @@ public class Main {
     private static void menuProductos() {
         boolean salir = false;
         while (!salir) {
-            System.out.println("\n--- GESTIÓN DE PRODUCTOS ---");
-            System.out.println("1-Alta 2-Modificar 3-Baja lógica 4-Listado 0-Volver");
+            System.out.println("\n--- GESTION DE PRODUCTOS ---");
+            System.out.println("1-Alta\n2-Modificar\n3-Baja lógica\n4-Listado\n0-Volver");
             System.out.print("Opción: ");
             String op = sc.nextLine().trim();
             switch (op) {
@@ -117,12 +145,22 @@ public class Main {
                     System.out.print("ID Categoría: ");
                     Long idCat = Long.parseLong(sc.nextLine().trim());
                     Optional<Categoria> optC = categoriaRepo.buscarPorId(idCat);
-                    if (optC.isEmpty() || optC.get().isEliminado()) { System.out.println("Error categoría"); break; }
-                    System.out.print("Nombre: "); String nom = sc.nextLine().trim();
-                    if (nom.isEmpty()) break;
-                    System.out.print("Precio: "); Double pre = Double.parseDouble(sc.nextLine().trim());
-                    System.out.print("Stock: "); int stk = Integer.parseInt(sc.nextLine().trim());
-                    if (pre <= 0 || stk < 0) { System.out.println("Error valores"); break; }
+                    if (optC.isEmpty() || optC.get().isEliminado()) {
+                        System.out.println("Error categoría");
+                        break;
+                    }
+                    System.out.print("Nombre: ");
+                    String nom = sc.nextLine().trim();
+                    if (nom.isEmpty())
+                        break;
+                    System.out.print("Precio: ");
+                    Double pre = Double.parseDouble(sc.nextLine().trim());
+                    System.out.print("Stock: ");
+                    int stk = Integer.parseInt(sc.nextLine().trim());
+                    if (pre <= 0 || stk < 0) {
+                        System.out.println("Error valores");
+                        break;
+                    }
                     Producto p = Producto.builder().nombre(nom).precio(pre).stock(stk).disponible(true).build();
                     p = productoRepo.guardar(p);
                     optC.get().addProducto(p);
@@ -133,24 +171,40 @@ public class Main {
                     System.out.print("ID Producto: ");
                     Long idMod = Long.parseLong(sc.nextLine().trim());
                     Optional<Producto> optP = productoRepo.buscarPorId(idMod);
-                    if (optP.isEmpty() || optP.get().isEliminado()) { System.out.println("Error"); break; }
+                    if (optP.isEmpty() || optP.get().isEliminado()) {
+                        System.out.println("Error");
+                        break;
+                    }
                     Producto pMod = optP.get();
-                    System.out.print("Nuevo Nombre: "); String nNom = sc.nextLine().trim(); if(!nNom.isEmpty()) pMod.setNombre(nNom);
-                    System.out.print("Nuevo Precio: "); String nPre = sc.nextLine().trim(); if(!nPre.isEmpty()) pMod.setPrecio(Double.parseDouble(nPre));
-                    System.out.print("Nuevo Stock: "); String nStk = sc.nextLine().trim(); if(!nStk.isEmpty()) pMod.setStock(Integer.parseInt(nStk));
+                    System.out.print("Nuevo Nombre: ");
+                    String nNom = sc.nextLine().trim();
+                    if (!nNom.isEmpty())
+                        pMod.setNombre(nNom);
+                    System.out.print("Nuevo Precio: ");
+                    String nPre = sc.nextLine().trim();
+                    if (!nPre.isEmpty())
+                        pMod.setPrecio(Double.parseDouble(nPre));
+                    System.out.print("Nuevo Stock: ");
+                    String nStk = sc.nextLine().trim();
+                    if (!nStk.isEmpty())
+                        pMod.setStock(Integer.parseInt(nStk));
                     productoRepo.guardar(pMod);
                     System.out.println("Guardado");
                     break;
                 case "3":
                     System.out.print("ID baja: ");
-                    if (productoRepo.eliminarLogico(Long.parseLong(sc.nextLine().trim()))) System.out.println("Baja exitosa");
+                    if (productoRepo.eliminarLogico(Long.parseLong(sc.nextLine().trim())))
+                        System.out.println("Baja exitosa");
                     break;
                 case "4":
                     for (Producto prod : productoRepo.listarActivos()) {
-                        System.out.println(prod.getId() + " | " + prod.getNombre() + " | $" + prod.getPrecio() + " | Stk: " + prod.getStock());
+                        System.out.println(prod.getId() + " | " + prod.getNombre() + " | $" + prod.getPrecio()
+                                + " | Stk: " + prod.getStock());
                     }
                     break;
-                case "0": salir = true; break;
+                case "0":
+                    salir = true;
+                    break;
             }
         }
     }
@@ -159,16 +213,23 @@ public class Main {
         boolean salir = false;
         while (!salir) {
             System.out.println("\n--- GESTIÓN DE USUARIOS ---");
-            System.out.println("1-Alta 2-Modificar 3-Baja lógica 4-Listado 5-Buscar por mail 0-Volver");
+            System.out.println("1-Alta\n2-Modificar\n3-Baja lógica\n4-Listado\n5-Buscar por mail\n0-Volver");
             System.out.print("Opción: ");
             String op = sc.nextLine().trim();
             switch (op) {
                 case "1":
-                    System.out.print("Mail: "); String m = sc.nextLine().trim();
-                    if (usuarioRepo.buscarPorMail(m).isPresent()) { System.out.println("Mail en uso"); break; }
-                    System.out.print("Nombre: "); String n = sc.nextLine().trim();
-                    System.out.print("Apellido: "); String a = sc.nextLine().trim();
-                    System.out.print("Rol (ADMIN/USUARIO): "); String r = sc.nextLine().trim().toUpperCase();
+                    System.out.print("Mail: ");
+                    String m = sc.nextLine().trim();
+                    if (usuarioRepo.buscarPorMail(m).isPresent()) {
+                        System.out.println("Mail en uso");
+                        break;
+                    }
+                    System.out.print("Nombre: ");
+                    String n = sc.nextLine().trim();
+                    System.out.print("Apellido: ");
+                    String a = sc.nextLine().trim();
+                    System.out.print("Rol (ADMIN/USUARIO): ");
+                    String r = sc.nextLine().trim().toUpperCase();
                     Usuario u = Usuario.builder().nombre(n).apellido(a).mail(m).rol(Rol.valueOf(r)).build();
                     u = usuarioRepo.guardar(u);
                     System.out.println("ID Generado: " + u.getId());
@@ -176,31 +237,49 @@ public class Main {
                 case "2":
                     System.out.print("ID Usuario: ");
                     Optional<Usuario> optU = usuarioRepo.buscarPorId(Long.parseLong(sc.nextLine().trim()));
-                    if (optU.isEmpty() || optU.get().isEliminado()) { System.out.println("Error"); break; }
+                    if (optU.isEmpty() || optU.get().isEliminado()) {
+                        System.out.println("Error");
+                        break;
+                    }
                     Usuario uMod = optU.get();
-                    System.out.print("Nuevo Mail: "); String nm = sc.nextLine().trim();
+                    System.out.print("Nuevo Mail: ");
+                    String nm = sc.nextLine().trim();
                     if (!nm.isEmpty() && !nm.equals(uMod.getMail()) && usuarioRepo.buscarPorMail(nm).isPresent()) {
-                        System.out.println("Mail en uso"); break;
-                    } else if (!nm.isEmpty()) uMod.setMail(nm);
-                    System.out.print("Nuevo Nombre: "); String nn = sc.nextLine().trim(); if(!nn.isEmpty()) uMod.setNombre(nn);
-                    System.out.print("Nuevo Apellido: "); String na = sc.nextLine().trim(); if(!na.isEmpty()) uMod.setApellido(na);
+                        System.out.println("Mail en uso");
+                        break;
+                    } else if (!nm.isEmpty())
+                        uMod.setMail(nm);
+                    System.out.print("Nuevo Nombre: ");
+                    String nn = sc.nextLine().trim();
+                    if (!nn.isEmpty())
+                        uMod.setNombre(nn);
+                    System.out.print("Nuevo Apellido: ");
+                    String na = sc.nextLine().trim();
+                    if (!na.isEmpty())
+                        uMod.setApellido(na);
                     usuarioRepo.guardar(uMod);
                     System.out.println("Guardado");
                     break;
                 case "3":
                     System.out.print("ID baja: ");
-                    if (usuarioRepo.eliminarLogico(Long.parseLong(sc.nextLine().trim()))) System.out.println("Baja exitosa");
+                    if (usuarioRepo.eliminarLogico(Long.parseLong(sc.nextLine().trim())))
+                        System.out.println("Baja exitosa");
                     break;
                 case "4":
-                    for (Usuario usr : usuarioRepo.listarActivos()) System.out.println(usr.getId() + " | " + usr.getMail() + " | " + usr.getRol());
+                    for (Usuario usr : usuarioRepo.listarActivos())
+                        System.out.println(usr.getId() + " | " + usr.getMail() + " | " + usr.getRol());
                     break;
                 case "5":
                     System.out.print("Mail a buscar: ");
                     Optional<Usuario> o = usuarioRepo.buscarPorMail(sc.nextLine().trim());
-                    if (o.isPresent()) System.out.println("Encontrado: " + o.get().getNombre() + " " + o.get().getApellido());
-                    else System.out.println("No existe");
+                    if (o.isPresent())
+                        System.out.println("Encontrado: " + o.get().getNombre() + " " + o.get().getApellido());
+                    else
+                        System.out.println("No existe");
                     break;
-                case "0": salir = true; break;
+                case "0":
+                    salir = true;
+                    break;
             }
         }
     }
@@ -209,15 +288,20 @@ public class Main {
         boolean salir = false;
         while (!salir) {
             System.out.println("\n--- GESTIÓN DE PEDIDOS ---");
-            System.out.println("1-Alta 2-Cambiar estado 3-Baja lógica 4-Listado 0-Volver");
+            System.out.println("1-Alta\n2-Cambiar estado\n3-Baja lógica\n4-Listado\n0-Volver");
             System.out.print("Opción: ");
             String op = sc.nextLine().trim();
             switch (op) {
-                case "1": altaPedido(); break;
+                case "1":
+                    altaPedido();
+                    break;
                 case "2":
                     System.out.print("ID Pedido: ");
                     Optional<Pedido> o = pedidoRepo.buscarPorId(Long.parseLong(sc.nextLine().trim()));
-                    if (o.isEmpty() || o.get().isEliminado()) { System.out.println("Error"); break; }
+                    if (o.isEmpty() || o.get().isEliminado()) {
+                        System.out.println("Error");
+                        break;
+                    }
                     System.out.print("Nuevo Estado (PENDIENTE/CONFIRMADO/TERMINADO/CANCELADO): ");
                     o.get().setEstado(EstadoPedido.valueOf(sc.nextLine().trim().toUpperCase()));
                     pedidoRepo.guardar(o.get());
@@ -225,12 +309,16 @@ public class Main {
                     break;
                 case "3":
                     System.out.print("ID baja: ");
-                    if (pedidoRepo.eliminarLogico(Long.parseLong(sc.nextLine().trim()))) System.out.println("Baja exitosa");
+                    if (pedidoRepo.eliminarLogico(Long.parseLong(sc.nextLine().trim())))
+                        System.out.println("Baja exitosa");
                     break;
                 case "4":
-                    for (Pedido p : pedidoRepo.listarActivos()) System.out.println(p.getId() + " | " + p.getEstado() + " | $" + p.getTotal());
+                    for (Pedido p : pedidoRepo.listarActivos())
+                        System.out.println(p.getId() + " | " + p.getEstado() + " | $" + p.getTotal());
                     break;
-                case "0": salir = true; break;
+                case "0":
+                    salir = true;
+                    break;
             }
         }
     }
@@ -239,34 +327,58 @@ public class Main {
         System.out.print("ID Usuario: ");
         Long idU = Long.parseLong(sc.nextLine().trim());
         Optional<Usuario> ou = usuarioRepo.buscarPorId(idU);
-        if (ou.isEmpty() || ou.get().isEliminado()) { System.out.println("Error usuario"); return; }
+        if (ou.isEmpty() || ou.get().isEliminado()) {
+            System.out.println("Error usuario");
+            return;
+        }
 
         System.out.print("Forma de pago (TARJETA/TRANSFERENCIA/EFECTIVO): ");
         FormaPago fp;
-        try { fp = FormaPago.valueOf(sc.nextLine().trim().toUpperCase()); } catch(Exception e) { System.out.println("Error"); return; }
+        try {
+            fp = FormaPago.valueOf(sc.nextLine().trim().toUpperCase());
+        } catch (Exception e) {
+            System.out.println("Error");
+            return;
+        }
 
-        class ItemTemp { Long id; int cant; ItemTemp(Long i, int c) { id=i; cant=c; } }
+        class ItemTemp {
+            Long id;
+            int cant;
+
+            ItemTemp(Long i, int c) {
+                id = i;
+                cant = c;
+            }
+        }
         List<ItemTemp> items = new ArrayList<>();
-        
+
         while (true) {
             System.out.print("ID Producto (0 para terminar): ");
             Long idP = Long.parseLong(sc.nextLine().trim());
-            if (idP == 0) break;
+            if (idP == 0)
+                break;
             Optional<Producto> op = productoRepo.buscarPorId(idP);
-            if (op.isEmpty() || !op.get().getDisponible() || op.get().isEliminado()) { System.out.println("No disponible"); continue; }
+            if (op.isEmpty() || !op.get().getDisponible() || op.get().isEliminado()) {
+                System.out.println("No disponible");
+                continue;
+            }
             System.out.print("Cantidad: ");
             int cant = Integer.parseInt(sc.nextLine().trim());
-            if (cant <= 0 || cant > op.get().getStock()) { System.out.println("Stock insuficiente"); continue; }
+            if (cant <= 0 || cant > op.get().getStock()) {
+                System.out.println("Stock insuficiente");
+                continue;
+            }
             items.add(new ItemTemp(idP, cant));
         }
 
-        if (items.isEmpty()) return;
+        if (items.isEmpty())
+            return;
 
         EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         try {
             Pedido ped = Pedido.builder().fecha(LocalDate.now()).estado(EstadoPedido.PENDIENTE).formaPago(fp).build();
-            
+
             for (ItemTemp it : items) {
                 Producto prod = em.find(Producto.class, it.id);
                 ped.addDetallePedido(it.cant, prod);
@@ -274,10 +386,10 @@ public class Main {
             }
             ped.calcularTotal();
             em.persist(ped);
-            
+
             Usuario usr = em.find(Usuario.class, idU);
             usr.addPedido(ped);
-            
+
             em.getTransaction().commit();
             System.out.println("Pedido generado ID: " + ped.getId() + " Total: $" + ped.getTotal());
         } catch (Exception e) {
@@ -292,7 +404,8 @@ public class Main {
         boolean salir = false;
         while (!salir) {
             System.out.println("\n--- REPORTES ---");
-            System.out.println("1-Prod por Categoría 2-Ped por Usuario 3-Ped por Estado 4-Total facturado 0-Volver");
+            System.out
+                    .println("1-Prod por Categoría\n2-Ped por Usuario\n3-Ped por Estado\n4-Total facturado\n0-Volver");
             System.out.print("Opción: ");
             String op = sc.nextLine().trim();
             switch (op) {
@@ -308,14 +421,18 @@ public class Main {
                     break;
                 case "3":
                     System.out.print("Estado: ");
-                    List<Pedido> pedsE = pedidoRepo.buscarPorEstado(EstadoPedido.valueOf(sc.nextLine().trim().toUpperCase()));
+                    List<Pedido> pedsE = pedidoRepo
+                            .buscarPorEstado(EstadoPedido.valueOf(sc.nextLine().trim().toUpperCase()));
                     pedsE.forEach(p -> System.out.println("ID:" + p.getId() + " Total:$" + p.getTotal()));
                     break;
                 case "4":
-                    double sum = pedidoRepo.buscarPorEstado(EstadoPedido.TERMINADO).stream().mapToDouble(Pedido::getTotal).sum();
+                    double sum = pedidoRepo.buscarPorEstado(EstadoPedido.TERMINADO).stream()
+                            .mapToDouble(Pedido::getTotal).sum();
                     System.out.println(String.format(Locale.US, "Total facturado: $%.2f", sum));
                     break;
-                case "0": salir = true; break;
+                case "0":
+                    salir = true;
+                    break;
             }
         }
     }
